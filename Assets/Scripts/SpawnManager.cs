@@ -20,7 +20,11 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObjects()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
                         
             Vector3 topPosToSpawn = new Vector3(0, 0.57f, 0);

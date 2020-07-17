@@ -13,9 +13,7 @@ public class SpawnObject : MonoBehaviour
 
     void Update()
     {
-
         MoveObjects();
-
     }
 
     void MoveObjects()
@@ -24,7 +22,11 @@ public class SpawnObject : MonoBehaviour
         keyPress = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);
 
         //left row
-        if (transform.position.x < -0.1f && keyPress)
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+        else if (transform.position.x < -0.1f && keyPress)
         {
             transform.Translate(0.25f, 0, 0);
         }
