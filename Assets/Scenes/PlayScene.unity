@@ -1765,7 +1765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 5
+  currentHealth: 1
   isHoldingKey: 0
   healthUI: {fileID: 1779408999}
 --- !u!95 &1546212781

@@ -26,37 +26,45 @@ public class Player : MonoBehaviour
         healthUI.text = "HP " + currentHealth + "/" + maxHealth;
     }
 
-    //functions for interacting with items/enemies
+    //Collect functions for interacting with items/enemies
+    //Connected with SpawnObjects
     public void CollectHeart()
     {
         if(currentHealth >= 10)
         {
-            Debug.Log("Health Max");
+            Debug.Log("Health Max!");
             return;
         }
         else
         {
             currentHealth++;            
             Debug.Log("Heart Collected!");
-        }
-        
+        }       
     }
 
     public void CollectKey()
     {
-        isHoldingKey = true;
-        Debug.Log("Key Collected!");
+        if (isHoldingKey == false)
+        {
+            isHoldingKey = true;
+            Debug.Log("Key Collected!");
+        }
+        else
+        {
+            Debug.Log("Keys Full!");
+            return;
+        }
+        
     }
 
     public void CollectEnemy()
     {
-
+        currentHealth--;
         Debug.Log("Enemy Collected!");
     }
 
     public void CollectChest()
     {
-
         Debug.Log("Chest Collected!");
     }
 
@@ -70,10 +78,7 @@ public class Player : MonoBehaviour
         else
         {
             isHoldingKey = false;
-            Debug.Log("Door Was Locked!");
-            
-        }
-        
+            Debug.Log("Door Was Locked!");            
+        }        
     }
-
 }

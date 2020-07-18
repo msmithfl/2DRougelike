@@ -7,7 +7,6 @@ public class SpawnObject : MonoBehaviour
     private bool keyPress = false;
     public int objectID;
 
-
     void Start()
     {
 
@@ -55,7 +54,6 @@ public class SpawnObject : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         
-
         if (other.tag == "Player")
         {
 
@@ -63,7 +61,6 @@ public class SpawnObject : MonoBehaviour
 
             if (player != null)
             {
-
                 switch (objectID)
                 {
                     case 0:
@@ -86,7 +83,6 @@ public class SpawnObject : MonoBehaviour
                         break;
                 }
             }
-
             Destroy(this.gameObject);
         }
     }

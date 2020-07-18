@@ -13,11 +13,9 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-
     void Update()
     {
-        SpawnObjects();
-        
+        SpawnObjects();        
     }
 
     void SpawnObjects()
