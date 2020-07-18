@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6781136950096854130}
   - component: {fileID: 5339141013113012244}
-  - component: {fileID: -643771243932055775}
   - component: {fileID: 5196526508105115961}
   - component: {fileID: -237260398435582108}
+  - component: {fileID: -1308485977654764967}
   m_Layer: 0
   m_Name: Heart
   m_TagString: SpawnObject
@@ -84,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-643771243932055775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2599887867921251836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c6dd8855fbac014caa42c71152ee72d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: 0
 --- !u!58 &5196526508105115961
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -134,3 +121,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1308485977654764967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599887867921251836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6e2f73b21c1471d9bd50d8238d92f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectID: 0
+  spawnRate: 0.4
