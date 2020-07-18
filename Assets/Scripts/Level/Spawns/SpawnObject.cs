@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class SpawnObject : MonoBehaviour
 {
-    private bool keyPress = false;
     public int objectID;
+    public double spawnRate;
+
+
+    public virtual bool DidSpawn(int roll) {
+        return spawnRate * 100 >= roll;
+    }
+
 
     void Start()
     {
@@ -20,7 +26,7 @@ public class SpawnObject : MonoBehaviour
     void MoveObjects()
     {
 
-        keyPress = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);
+        bool keyPress = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);
 
         //left row
         if (Time.timeScale == 0)
