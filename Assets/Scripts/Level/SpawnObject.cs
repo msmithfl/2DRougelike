@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnObject : MonoBehaviour
 {
     private bool keyPress = false;
+    public int objectID;
+
 
     void Start()
     {
@@ -52,10 +54,39 @@ public class SpawnObject : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Player player = other.transform.GetComponent<Player>();
+        
 
         if (other.tag == "Player")
         {
+
+            Player player = other.transform.GetComponent<Player>();
+
+            if (player != null)
+            {
+
+                switch (objectID)
+                {
+                    case 0:
+                        player.CollectHeart();
+                        break;
+                    case 1:
+                        player.CollectKey();
+                        break;
+                    case 2:
+                        player.CollectEnemy();
+                        break;
+                    case 3:
+                        player.CollectChest();
+                        break;
+                    case 4:
+                        player.CollectDoor();
+                        break;
+                    default:
+                        Debug.Log("Default Value");
+                        break;
+                }
+            }
+
             Destroy(this.gameObject);
         }
     }

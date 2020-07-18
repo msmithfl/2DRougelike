@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     
     public GameObject[] spawnList;
+    public GameObject objectContainer;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         SpawnObjects();
+        
     }
 
     void SpawnObjects()
@@ -35,10 +37,16 @@ public class SpawnManager : MonoBehaviour
             int bottomObject = Random.Range(0, 6);
             int leftObject = Random.Range(0, 6);
             int rightObject = Random.Range(0, 6);
-            Instantiate(spawnList[topObject], topPosToSpawn, Quaternion.identity);
-            Instantiate(spawnList[bottomObject], bottomPosToSpawn, Quaternion.identity);
-            Instantiate(spawnList[leftObject], leftPosToSpawn, Quaternion.identity);
-            Instantiate(spawnList[rightObject], rightPosToSpawn, Quaternion.identity);    
+            GameObject newTopObject = Instantiate(spawnList[topObject], topPosToSpawn, Quaternion.identity);
+            GameObject newBottomObject = Instantiate(spawnList[bottomObject], bottomPosToSpawn, Quaternion.identity);
+            GameObject newLeftObject = Instantiate(spawnList[leftObject], leftPosToSpawn, Quaternion.identity);
+            GameObject newRightObject = Instantiate(spawnList[rightObject], rightPosToSpawn, Quaternion.identity);
+
+            //for organizing in heirarchy
+            newTopObject.transform.parent = objectContainer.transform;
+            newBottomObject.transform.parent = objectContainer.transform;
+            newLeftObject.transform.parent = objectContainer.transform;
+            newRightObject.transform.parent = objectContainer.transform;
 
         }
     }
