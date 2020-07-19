@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -23,8 +24,8 @@ public class PlayerAnimation : MonoBehaviour
 
     void SetAnimation()
     {
-        //lock anim only on game over screen
-        if (FindObjectOfType<Player>().currentHealth <= 0)
+
+        if (FindObjectOfType<GameOver>().gameOver == true)
         {
             animator.SetBool("isDead", true);
             return;

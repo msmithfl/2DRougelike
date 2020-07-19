@@ -19,26 +19,15 @@ public class GameOver : MonoBehaviour
        if(FindObjectOfType<Player>().currentHealth <= 0)
        {
             gameOver = true;
-            gameOverUI.SetActive(true);            
-            Time.timeScale = 0;
+            gameOverUI.SetActive(true);
             return;
        }
-       else if (FindObjectOfType<PauseMenu>().GameIsPaused == true)
-       {
-            Time.timeScale = 0;
-            gameOver = false;
-       }
-       else
-       {            
-            Time.timeScale = 1;
-            gameOver = false;
-       }
+
     }
 
     public void RestartGame()
     {
         Debug.Log("Restarting Game...");
-        Time.timeScale = 1f;
         SceneManager.LoadScene("PlayScene");
         gameOver = false;
 

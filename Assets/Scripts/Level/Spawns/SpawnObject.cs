@@ -29,7 +29,7 @@ public class SpawnObject : MonoBehaviour
         bool keyPress = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D);
 
         //left row
-        if (Time.timeScale == 0)
+        if (FindObjectOfType<PauseMenu>().GameIsPaused == true || FindObjectOfType<GameOver>().gameOver == true)
         {
             return;
         }

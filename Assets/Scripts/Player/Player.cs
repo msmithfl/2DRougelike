@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
             maxHealth++;
         }
 
-        if (currentHealth <= -1)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
         }
@@ -106,12 +106,15 @@ public class Player : MonoBehaviour
         if (isHoldingKey)
         {
             isHoldingKey = false;
+            currentLvl++;
+            expUI.text = "LVL " + currentLvl;
+            maxHealth++;
             Debug.Log("Door Opened!");
         }
         else
         {
             isHoldingKey = false;
             Debug.Log("Door Was Locked!");            
-        }        
+        }
     }
 }

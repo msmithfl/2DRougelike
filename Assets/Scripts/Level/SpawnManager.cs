@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObjects()
     {
-        if (Time.timeScale == 0)
+        if (FindObjectOfType<PauseMenu>().GameIsPaused == true || FindObjectOfType<GameOver>().gameOver == true)
         {
             return;
         }
