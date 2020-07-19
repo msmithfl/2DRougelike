@@ -23,14 +23,23 @@ public class PlayerAnimation : MonoBehaviour
 
     void SetAnimation()
     {
-        isPressingUp = Input.GetKeyDown(KeyCode.W);
-        isPressingDown = Input.GetKeyDown(KeyCode.S);
-        isPressingLeft = Input.GetKeyDown(KeyCode.A);
-        isPressingRight = Input.GetKeyDown(KeyCode.D);
+        //lock anim only on game over screen
+        if (FindObjectOfType<Player>().currentHealth <= 0)
+        {
+            animator.SetBool("isDead", true);
+            return;
+        }
+        else
+        {        
+            isPressingUp = Input.GetKeyDown(KeyCode.W);
+            isPressingDown = Input.GetKeyDown(KeyCode.S);
+            isPressingLeft = Input.GetKeyDown(KeyCode.A);
+            isPressingRight = Input.GetKeyDown(KeyCode.D);
 
-        animator.SetBool("isFacingUp", isPressingUp);
-        animator.SetBool("isFacingDown", isPressingDown);
-        animator.SetBool("isFacingLeft", isPressingLeft);
-        animator.SetBool("isFacingRight", isPressingRight);
+            animator.SetBool("isFacingUp", isPressingUp);
+            animator.SetBool("isFacingDown", isPressingDown);
+            animator.SetBool("isFacingLeft", isPressingLeft);
+            animator.SetBool("isFacingRight", isPressingRight);
+        }
     }
 }
