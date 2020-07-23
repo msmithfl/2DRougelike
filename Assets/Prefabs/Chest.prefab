@@ -134,4 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: 3
-  spawnRate: 0.3
+  spawnRate: 0.2

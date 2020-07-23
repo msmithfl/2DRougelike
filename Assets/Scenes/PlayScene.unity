@@ -1866,6 +1866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ae4b1c0bad2694382fd6a978f56d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameIsPaused: 0
   pauseMenuUI: {fileID: 1582101695}
 --- !u!4 &1212622375
 Transform:
@@ -2236,7 +2237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 5
+  currentHealth: 10
   isHoldingKey: 0
   healthUI: {fileID: 1779408999}
   expUI: {fileID: 700792093}
