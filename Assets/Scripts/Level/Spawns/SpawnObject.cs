@@ -30,20 +30,20 @@ public class SpawnObject : MonoBehaviour
         {
             return;
         } else {
-            allPathsActiveMove();
-            // frontPathActiveMove();
-            // frontAndSidePathsActiveMove();
+            allPathsMove();
+            // singlePathMove();
+            // flankPathsMove();
         }
     }
 
-    private void allPathsActiveMove() {
+    private void allPathsMove() {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) {
             index -= 1;
             updatePosition();
         }
     }
 
-    private void frontPathActiveMove() {
+    private void singlePathMove() {
         if (
             (Input.GetKeyDown(KeyCode.W) && row == 'T') ||
             (Input.GetKeyDown(KeyCode.A) && row == 'L') ||
@@ -55,7 +55,7 @@ public class SpawnObject : MonoBehaviour
         }
     }
 
-    private void frontAndSidePathsActiveMove() {
+    private void flankPathsMove() {
         
     }
 
