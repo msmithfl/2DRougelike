@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    
     public GameObject[] spawnList;
     public GameObject objectContainer;
 
-    private Vector3 topPosition = new Vector3(0, 0.57f, 0);
-    private Vector3 bottomPosition = new Vector3(0, -0.565f, 0);
-    private Vector3 leftPosition = new Vector3(-0.751f, -0.02f, 0);
-    private Vector3 rightPosition = new Vector3(0.751f, -0.02f, 0);
-
     void Start()
     {
-        
     }
 
     void Update()
@@ -33,24 +26,39 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject newTopObject = Instantiate(
                 getRandomSpawn(),
-                topPosition,
+                GameObject.Find("PlaceBubbleT2").transform.position,
                 Quaternion.identity
             );
+            SpawnObject topSpawnObject = newTopObject.GetComponent<SpawnObject>();
+            topSpawnObject.row = 'T';
+            topSpawnObject.index = 2;
+
             GameObject newBottomObject = Instantiate(
                 getRandomSpawn(),
-                bottomPosition,
+                GameObject.Find("PlaceBubbleB2").transform.position,
                 Quaternion.identity
             );
+            SpawnObject bottomSpawnObject = newBottomObject.GetComponent<SpawnObject>();
+            bottomSpawnObject.row = 'B';
+            bottomSpawnObject.index = 2;
+
             GameObject newLeftObject = Instantiate(
                 getRandomSpawn(),
-                leftPosition,
+                GameObject.Find("PlaceBubbleL2").transform.position,
                 Quaternion.identity
             );
+            SpawnObject leftSpawnObject = newLeftObject.GetComponent<SpawnObject>();
+            leftSpawnObject.row = 'L';
+            leftSpawnObject.index = 2;
+
             GameObject newRightObject = Instantiate(
                 getRandomSpawn(),
-                rightPosition,
+                GameObject.Find("PlaceBubbleR2").transform.position,
                 Quaternion.identity
             );
+            SpawnObject rightSpawnObject = newRightObject.GetComponent<SpawnObject>();
+            rightSpawnObject.row = 'R';
+            rightSpawnObject.index = 2;
 
             //for organizing in heirarchy
             newTopObject.transform.parent = objectContainer.transform;
@@ -60,16 +68,17 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    GameObject getRandomSpawn() {
-            int roll = Random.Range(0, 100);
+    GameObject getRandomSpawn()
+    {
+        int roll = Random.Range(0, 100);
 
-            List<GameObject> candidates = new List<GameObject>();
-            foreach (GameObject spawn in spawnList) {
-                if (spawn.GetComponent<SpawnObject>().DidSpawn(roll)) {
-                    candidates.Add(spawn);
-                }
+        List<GameObject> candidates = new List<GameObject>();
+        foreach (GameObject spawn in spawnList) {
+            if (spawn.GetComponent<SpawnObject>().DidSpawn(roll)) {
+                candidates.Add(spawn);
             }
+        }
 
-            return candidates[Random.Range(0, candidates.Count)];
+        return candidates[Random.Range(0, candidates.Count)];
     }
 }
