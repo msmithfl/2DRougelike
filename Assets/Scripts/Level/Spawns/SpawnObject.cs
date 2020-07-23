@@ -29,10 +29,34 @@ public class SpawnObject : MonoBehaviour
         if (FindObjectOfType<PauseMenu>().GameIsPaused == true || FindObjectOfType<GameOver>().gameOver == true)
         {
             return;
-        } else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) {
+        } else {
+            allPathsActiveMove();
+            // frontPathActiveMove();
+            // frontAndSidePathsActiveMove();
+        }
+    }
+
+    private void allPathsActiveMove() {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) {
             index -= 1;
             updatePosition();
         }
+    }
+
+    private void frontPathActiveMove() {
+        if (
+            (Input.GetKeyDown(KeyCode.W) && row == 'T') ||
+            (Input.GetKeyDown(KeyCode.A) && row == 'L') ||
+            (Input.GetKeyDown(KeyCode.S) && row == 'B') ||
+            (Input.GetKeyDown(KeyCode.D) && row == 'R')
+        ) {
+            index -= 1;
+            updatePosition();
+        }
+    }
+
+    private void frontAndSidePathsActiveMove() {
+        
     }
 
     private void updatePosition()
