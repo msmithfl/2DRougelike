@@ -21,51 +21,79 @@ public class SpawnManager : MonoBehaviour
         if (FindObjectOfType<PauseMenu>().GameIsPaused == true || FindObjectOfType<GameOver>().gameOver == true)
         {
             return;
+        } else {
+            switch (GameMode.current)
+            {
+                case GameMode.Type.AllPaths:
+                    SpawnAll();
+                    break;
+                case GameMode.Type.ThreePaths:
+                    SpawnThree();
+                    break;
+                case GameMode.Type.SinglePath:
+                    SpawnSingle();
+                    break;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+    }
+
+    void SpawnAll()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
-            GameObject newTopObject = Instantiate(
-                getRandomSpawn(),
-                GameObject.Find("PlaceBubbleT2").transform.position,
-                Quaternion.identity
-            );
-            SpawnObject topSpawnObject = newTopObject.GetComponent<SpawnObject>();
-            topSpawnObject.row = 'T';
-            topSpawnObject.index = 2;
-
-            GameObject newBottomObject = Instantiate(
-                getRandomSpawn(),
-                GameObject.Find("PlaceBubbleB2").transform.position,
-                Quaternion.identity
-            );
-            SpawnObject bottomSpawnObject = newBottomObject.GetComponent<SpawnObject>();
-            bottomSpawnObject.row = 'B';
-            bottomSpawnObject.index = 2;
-
-            GameObject newLeftObject = Instantiate(
-                getRandomSpawn(),
-                GameObject.Find("PlaceBubbleL2").transform.position,
-                Quaternion.identity
-            );
-            SpawnObject leftSpawnObject = newLeftObject.GetComponent<SpawnObject>();
-            leftSpawnObject.row = 'L';
-            leftSpawnObject.index = 2;
-
-            GameObject newRightObject = Instantiate(
-                getRandomSpawn(),
-                GameObject.Find("PlaceBubbleR2").transform.position,
-                Quaternion.identity
-            );
-            SpawnObject rightSpawnObject = newRightObject.GetComponent<SpawnObject>();
-            rightSpawnObject.row = 'R';
-            rightSpawnObject.index = 2;
-
-            //for organizing in heirarchy
-            newTopObject.transform.parent = objectContainer.transform;
-            newBottomObject.transform.parent = objectContainer.transform;
-            newLeftObject.transform.parent = objectContainer.transform;
-            newRightObject.transform.parent = objectContainer.transform;
+            Spawn("PlaceBubbleT2", 'T', 2);
+            Spawn("PlaceBubbleB2", 'B', 2);
+            Spawn("PlaceBubbleL2", 'L', 2);
+            Spawn("PlaceBubbleR2", 'R', 2);
         }
+    }
+
+    void SpawnThree()
+    {
+        if (Input.GetKeyDown(KeyCode.W)) {
+            Spawn("PlaceBubbleT2", 'T', 2);
+            Spawn("PlaceBubbleL2", 'L', 2);
+            Spawn("PlaceBubbleR2", 'R', 2);
+        } else if (Input.GetKeyDown(KeyCode.A)) {
+            Spawn("PlaceBubbleT2", 'T', 2);
+            Spawn("PlaceBubbleL2", 'L', 2);
+            Spawn("PlaceBubbleB2", 'B', 2);
+        } else if (Input.GetKeyDown(KeyCode.S)) {
+            Spawn("PlaceBubbleL2", 'L', 2);
+            Spawn("PlaceBubbleB2", 'B', 2);
+            Spawn("PlaceBubbleR2", 'R', 2);
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            Spawn("PlaceBubbleT2", 'T', 2);
+            Spawn("PlaceBubbleR2", 'R', 2);
+            Spawn("PlaceBubbleB2", 'B', 2);
+        }
+    }
+
+    void SpawnSingle()
+    {
+        if (Input.GetKeyDown(KeyCode.W)) {
+            Spawn("PlaceBubbleT2", 'T', 2);
+        } else if (Input.GetKeyDown(KeyCode.A)) {
+            Spawn("PlaceBubbleL2", 'L', 2);
+        } else if (Input.GetKeyDown(KeyCode.S)) {
+            Spawn("PlaceBubbleB2", 'B', 2);
+        } else if (Input.GetKeyDown(KeyCode.D)) {
+            Spawn("PlaceBubbleR2", 'R', 2);
+        }
+    }
+
+    void Spawn(string label, char row, int index)
+    {
+        GameObject newObject = Instantiate(
+            getRandomSpawn(),
+            GameObject.Find(label).transform.position,
+            Quaternion.identity
+        );
+        SpawnObject spawnObject = newObject.GetComponent<SpawnObject>();
+        spawnObject.row = row;
+        spawnObject.index = index;
+
+        newObject.transform.parent = objectContainer.transform;
     }
 
     GameObject getRandomSpawn()

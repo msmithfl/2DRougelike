@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameMode;
 
 public class SpawnObject : MonoBehaviour
 {
@@ -30,9 +31,18 @@ public class SpawnObject : MonoBehaviour
         {
             return;
         } else {
-            allPathsMove();
-            // singlePathMove();
-            // flankPathsMove();
+            switch (GameMode.current)
+            {
+                case GameMode.Type.AllPaths:
+                    allPathsMove();
+                    break;
+                case GameMode.Type.ThreePaths:
+                    threePathsMove();
+                    break;
+                case GameMode.Type.SinglePath:
+                    singlePathMove();
+                    break;
+            }
         }
     }
 
@@ -55,8 +65,16 @@ public class SpawnObject : MonoBehaviour
         }
     }
 
-    private void flankPathsMove() {
-        
+    private void threePathsMove() {
+        if (
+            (Input.GetKeyDown(KeyCode.W) && row != 'B') ||
+            (Input.GetKeyDown(KeyCode.A) && row != 'R') ||
+            (Input.GetKeyDown(KeyCode.S) && row != 'T') ||
+            (Input.GetKeyDown(KeyCode.D) && row != 'L')
+        ) {
+            index -= 1;
+            updatePosition();
+        }
     }
 
     private void updatePosition()
